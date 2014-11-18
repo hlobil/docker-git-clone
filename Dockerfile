@@ -1,10 +1,13 @@
-# build : docker build --tag=git-clone .
-# run :     alias gc="boot2docker ssh -t docker run -it --rm -v \\\$SSH_AUTH_SOCK:/ssh-agent -e SSH_AUTH_SOCK=/ssh-agent git-clone bash"
-
-
 FROM ubuntu:14.04.1
 
-ADD install.sh /
-RUN bash -xe /install.sh
 
+# add script to run
+ADD *.sh /usr/local/bin/
+
+
+RUN bash -xe /usr/local/bin/install.sh
+
+WORKDIR /var/workspace
+
+CMD /bin/bash /usr/local/bin/run.sh
 
