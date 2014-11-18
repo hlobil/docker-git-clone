@@ -1,9 +1,14 @@
 set -ex
 
+# add git-core repository
+echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/git-core.list; 
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E1DF1F24
+
+
 apt-get update -qq 
 
 # install git
-DEBIAN_FRONTEND=noninteractive apt-get -qq -y --no-install-recommends install git openssh-client
+DEBIAN_FRONTEND=noninteractive apt-get -qqy --no-install-recommends install git openssh-client
 
 # cleanup apt cache to save image space
 apt-get -qqy autoclean
