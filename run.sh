@@ -4,14 +4,14 @@ if [[ -z "${GIT_REPO}" ]]; then
 	echo "Error, GIT_REPO is required." >&2
 fi
 
-GIT_BRANCH=${GIT_BRANCH:-'master'}
+: ${GIT_BRANCH:='master'}
 
 echo Cloning Project [${GIT_BRANCH}] ${GIT_REPO}
 git clone --quiet --single-branch --branch ${GIT_BRANCH} ${GIT_REPO} /var/workspace
 
-readonly REV=$(git rev-parse origin/master^{commit})
-export GIT_REV=${GIT_REV:-${REV}}
 
+: ${GIT_REV:=$(git rev-parse HEAD)}
+export GIT_REV
 
 echo Setting revision ${GIT_REV}
 git checkout --quiet --force ${GIT_REV}
