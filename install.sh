@@ -5,9 +5,9 @@ echo "deb http://ppa.launchpad.net/git-core/ppa/ubuntu $(lsb_release -cs) main" 
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E1DF1F24
 
 
-apt-get update -qq 
 
 # install git
+apt-get update -qq 
 DEBIAN_FRONTEND=noninteractive apt-get -qqy --no-install-recommends install git openssh-client
 
 # cleanup apt cache to save image space
